@@ -1,8 +1,13 @@
+server:
+    contextPath: /champion    
+    port: 9264 
+    session:
+        timeout : 7200
 ---
 grails:
     profile: web
     codegen:
-        defaultPackage: com.cmt
+        defaultPackage: io.champion
     spring:
         transactionManagement:
             proxies: false

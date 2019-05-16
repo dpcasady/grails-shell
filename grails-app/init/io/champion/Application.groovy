@@ -1,4 +1,4 @@
-package com.cmt
+package io.champion
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration

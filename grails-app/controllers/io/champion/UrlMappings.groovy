@@ -1,4 +1,4 @@
-package com.cmt
+package io.champion
 
 class UrlMappings {
 
