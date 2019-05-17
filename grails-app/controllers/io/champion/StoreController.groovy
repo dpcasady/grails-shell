@@ -107,7 +107,6 @@ class StoreController {
 
 
     def items(Store store){
-        println "store : ${store}"
         [ store : store ]
     }
 }

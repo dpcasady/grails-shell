@@ -23,21 +23,17 @@ class ShoppingCartController {
 
 
 	def add(Item item){
-		
-		println "item : ${item}"
 
 		def store = item.store
 
 		def shoppingCart
 
 		if(!session.shoppingCart){
-			println "no session...."
 			shoppingCart = new ShoppingCart()
 			shoppingCart.store = store
 			shoppingCart.save(flush:true)
 			session.shoppingCart = shoppingCart
 		}else{
-			println "session...."
 			shoppingCart = ShoppingCart.get(session.shoppingCart.id)
 			session.shoppingCart = shoppingCart
 		}
