@@ -1,10 +1,11 @@
 package io.champion
 
 import grails.converters.*
+import grails.transaction.Transactional
 
 class ShoppingCartController {
 	
-	def allowedMethods = [ add : "POST", remove: "POST" ]
+	def allowedMethods = [ add : "POST" ]
 
 
 	def index(){
@@ -41,7 +42,7 @@ class ShoppingCartController {
 			session.shoppingCart = shoppingCart
 		}
 
-		def shoppingCartItem = ShoppingCartItem.findByItemAndStore(item, store)
+		def shoppingCartItem = ShoppingCartItem.findByItemAndShoppingCart(item, shoppingCart)
 
 		if(!shoppingCartItem){
 
@@ -52,10 +53,6 @@ class ShoppingCartController {
 			shoppingCartItem.store = store
 
 			shoppingCartItem.save(flush:true)
-
-			if (!shoppingCartItem.isAttached()) {
-			    shoppingCartItem.attach()
-			}
 
 			shoppingCartItem.errors.allErrors.each { 
 				println it
@@ -77,8 +74,7 @@ class ShoppingCartController {
 
 
 	def remove(ShoppingCartItem shoppingCartItem){
-
-		if(shoppingCartItem.quantity == 1){
+		if(shoppingCartItem?.quantity == 1){
 			def shoppingCart = shoppingCartItem.shoppingCart
 			shoppingCart.removeFromShoppingCartItems(shoppingCartItem)
 			shoppingCartItem.delete(flush:true)
@@ -92,10 +88,25 @@ class ShoppingCartController {
 			shoppingCartItem.save(flush:true)
 		}
 
-
-
 		redirect(action: "index")
 
 	}
+
+
+    def checkout(){
+    	println "checkout..."
+        def customer = session.customer
+        def shoppingCart = ShoppingCart.get(params.id)
+
+        def transaction = new Transaction()
+        transaction.shoppingCart = shoppingCart
+        transaction.customer = Customer.get(params.customer.id)
+        transaction.store = shoppingCart.store
+        transaction.save(flush:true)
+
+        session.shoppingCart = null
+
+        render(view: "success", model: [ transaction: transaction, shoppingCart: shoppingCart ])
+    }   
 
 }

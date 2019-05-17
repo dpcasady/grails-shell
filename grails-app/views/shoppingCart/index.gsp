@@ -36,11 +36,7 @@
 
         </style>
 
-        <a href="#list-store" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 
-
-
-        
         <div id="list-store" class="content scaffold-list" role="main">
 
             <h1>Shopping Cart</h1>
@@ -62,7 +58,7 @@
                         <td>${shoppingCartItem.quantity}</td>
                         <td class="align-right">${shoppingCartItem.item.price}</td>
                         <td class="align-right">
-                            <g:form action="remove" id="${shoppingCartItem.item.id}">
+                            <g:form action="remove" id="${shoppingCartItem.id}">
                                 <g:actionSubmit class="btn btn-warning" value="Remove"/>
                             </g:form>
                         </td>
@@ -76,7 +72,10 @@
             </table>
 
             <div id="checkout-container">
-                <g:form controller="transaction" action="checkout" id="${shoppingCart.id}">
+                <g:form action="checkout" method="POST">
+                   
+                    <input type="hidden" name="id" value="${shoppingCart.id}">
+                   
                     <g:select name="customer.id"
                         from="${io.champion.Customer.list()}"
                         optionKey="id" 
@@ -85,7 +84,7 @@
                         id="customer-select"
                         noSelection="${['': 'Select One...']}"/>
 
-                    <g:actionSubmit value="\$${total} Checkout!" class="btn btn-primary btn-lg"/>
+                    <input type="submit" value="Checkout.... $${total}" class="btn btn-primary btn-lg"/>
                 </g:form>
             </div>
         </div>

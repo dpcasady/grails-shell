@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class TransactionController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", checkout: "POST"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -16,21 +16,6 @@ class TransactionController {
     def show(Transaction transaction) {
         respond transaction
     }
-
-
-    @Transactional
-    def checkout(Long id){
-        def customer = session.customer
-        def shoppingCart = ShoppingCart.get(id)
-
-        def transaction = new Transaction()
-        transaction.shoppingCart = shoppingCart
-        transaction.customer = Customer.get(1)
-        transaction.store = shoppingCart.store
-        transaction.save(flush:true)
-
-        redirect(action: "show", id: transaction.id)
-    }   
 
 
     @Transactional

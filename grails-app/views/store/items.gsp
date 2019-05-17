@@ -9,32 +9,6 @@
     
     <body>
 
-        <style type="text/css">
-            #store-heading{
-                width:400px;
-            }
-            #success-container{
-                height:30px;
-            }
-            .item-listing{
-                float:left;
-                border:solid 1px #ddd;
-                margin:20px 20px;
-                padding:53px;
-            }
-
-            #shopping-cart-count{
-                font-size:27px;
-            }
-
-
-        </style>
-
-        <a href="#list-store" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-
-
-
-        
         <div id="list-store" class="content scaffold-list" role="main">
 
             <h1 id="store-heading">${store.name} Store</h1>
@@ -42,15 +16,14 @@
             <div id="shopping-cart-container" class="pull-right">
 
                 <g:link uri="/shoppingCart">
-                    <span id="shopping-cart-count">${session.shoppingCart.shoppingCartItems.size()}</span>
-                </g:link> Items 
+                    <span id="shopping-cart-count">${session?.shoppingCart?.shoppingCartItems?.size()}</span>
+                </g:link> <br/>Cart Items
 
-                <br class="clear:both"/>
-                
                 <br class="clear"/>
             </div>
 
             <p>Shop the lastest and greatest in ${store.type}</p>
+
             <div id="success-container">
                 <p id="success-added" style="display:none">Successfully added to Shopping Cart</p>
             </div>
@@ -62,7 +35,6 @@
                     <p>${item.price}</p>
                     <a href="javascript:" class="add-cart btn btn-large btn-warning" data-id="${item.id}">Add Cart!</a>
                 </div>    
-
 
             </g:each>
 

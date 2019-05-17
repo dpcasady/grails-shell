@@ -17,18 +17,6 @@
 
         <g:layoutHead/>
 
-        <style type="text/css">
-            *{
-                font-size:17px;
-            }
-            #content-container{
-                width:760px;
-                margin:20px auto;
-            }
-            .clear{
-                clear:both;
-            }
-        </style>
     </head>
     <body>
         <div id="content-container">
@@ -39,13 +27,19 @@
                             <asset:image src="logo.png" height="30" alt="Champion Healthcare Technologies"/>
                         </a>
 
-                        <ul class="pull-right">
-                            <li><g:link uri="/store">Shop Now</g:link></li>
-                        </ul>
-
+                        <g:link uri="/store" class="btn btn-default btn-lg pull-right">Shop Now</g:link></li>
+                        
                         <br class="clear"/>
                     </nav>
                     <g:layoutBody/>
+
+                    <br class="clear"/>
+                    
+                    <div id="bottom-navigation">
+                        <g:link uri="/">Dashboard</g:link>&nbsp;|&nbsp;
+                        <g:link controller="customer" action="index">Customers</g:link>&nbsp;|&nbsp;
+                        <g:link controller="transaction" action="index">Transactions</g:link>
+                    </div>
                 </div>
             </div>
         </div>

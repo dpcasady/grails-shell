@@ -8,14 +8,6 @@
     </head>
     
     <body>
-        <style text="text/css">
-            .store-listing{
-                float:left;
-                padding:50px;
-                margin:20px 20px 20px 0px;
-                border:solid 1px #ddd;
-            }
-        </style>
         
         <div id="list-store" class="content scaffold-list" role="main">
 
