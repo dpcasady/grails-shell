@@ -4,7 +4,22 @@ import grails.converters.*
 
 class ShoppingCartController {
 	
-	def allowedMethods = [ add : "POST" ]
+	def allowedMethods = [ add : "POST", remove: "POST" ]
+
+
+	def index(){
+		def shoppingCart
+		if(session.shoppingCart){
+			shoppingCart = ShoppingCart.get(session.shoppingCart.id)
+		}
+
+		if(!shoppingCart){
+			redirect(controller: "store", action: "index")
+			return
+		}
+		[ shoppingCart: shoppingCart ]
+	}
+
 
 	def add(Item item){
 		
@@ -22,8 +37,10 @@ class ShoppingCartController {
 			session.shoppingCart = shoppingCart
 		}else{
 			println "session...."
-			shoppingCart = session.shoppingCart
+			shoppingCart = ShoppingCart.get(session.shoppingCart.id)
 		}
+
+
 
 		println "here.... ${shoppingCart} : ${store}"
 		def shoppingCartItem = ShoppingCartItem.findByItemAndStore(item, store)
@@ -47,10 +64,6 @@ class ShoppingCartController {
 				println it
 			}
 
-			if(!shoppingCart.isAttached()) {
-			    shoppingCart.attach()
-			}
-
 			shoppingCart.addToShoppingCartItems(shoppingCartItem)
 			shoppingCart.save(flush:true)
 
@@ -63,6 +76,29 @@ class ShoppingCartController {
 		}
 
 		render shoppingCart as JSON
+	}
+
+
+	def remove(ShoppingCartItem shoppingCartItem){
+
+		if(shoppingCartItem.quantity == 1){
+			def shoppingCart = shoppingCartItem.shoppingCart
+			shoppingCart.removeFromShoppingCartItems(shoppingCartItem)
+			shoppingCartItem.delete(flush:true)
+
+			if(shoppingCart.shoppingCartItems.size() == 0){
+				shoppingCart.delete(flush:true)
+				session.shoppingCart = null
+			}
+		}else{
+			shoppingCartItem.quantity--
+			shoppingCartItem.save(flush:true)
+		}
+
+
+
+		redirect(action: "index")
+
 	}
 
 }

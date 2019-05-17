@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class TransactionController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", checkout: "POST"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -17,9 +17,20 @@ class TransactionController {
         respond transaction
     }
 
-    def create() {
-        respond new Transaction(params)
-    }
+
+    @Transactional
+    def checkout(ShoppingCart shoppingCart){
+        def customer = session.customer
+
+        def transaction = new Transaction()
+        transaction.shoppingCart = shoppingCart
+        transasction.customer = Customer.get(1)
+        transaction.store = shoppingCart.store
+        transaction.save(flush:true)
+
+        redirect(action: "show", id: transaction.id)
+    }   
+
 
     @Transactional
     def save(Transaction transaction) {
@@ -43,35 +54,6 @@ class TransactionController {
                 redirect transaction
             }
             '*' { respond transaction, [status: CREATED] }
-        }
-    }
-
-    def edit(Transaction transaction) {
-        respond transaction
-    }
-
-    @Transactional
-    def update(Transaction transaction) {
-        if (transaction == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        if (transaction.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond transaction.errors, view:'edit'
-            return
-        }
-
-        transaction.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'transaction.label', default: 'Transaction'), transaction.id])
-                redirect transaction
-            }
-            '*'{ respond transaction, [status: OK] }
         }
     }
 

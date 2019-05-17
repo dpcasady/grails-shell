@@ -19,6 +19,11 @@ class Store {
 	
 	static hasMany = [ items: Item, transactions: Transaction ]
 
+	
+	static mapping = {
+		sort id: "asc"
+		items sort: "id", order: "asc"
+	}
 
 	static constraints = {
 		name(size:4..255, nullable:false, blank:false, unique:true)

@@ -17,6 +17,10 @@
                 padding:53px;
             }
 
+            #shopping-cart-count{
+                font-size:27px;
+            }
+
         </style>
 
         <a href="#list-store" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -27,6 +31,10 @@
         <div id="list-store" class="content scaffold-list" role="main">
 
             <h1>${store.name} Store</h1>
+
+            <div id="shopping-cart-container">
+                <g:link uri="/shoppingCart"><span id="shopping-cart-count">0</span></g:link> Items <span id="success-added" style="display:none">Successfully added to Shopping Cart</span>
+            </div>
 
             <p>Shop the lastest and greatest in ${store.type}</p>
 
@@ -46,7 +54,10 @@
 
         <script type="text/javascript">
             $(document).ready(function(){
-                var $addCartBtn = $(".add-cart")
+                var $addCartBtn = $(".add-cart"),
+                    $success = $("#success-added"),
+                    $cartCount = $("#shopping-cart-count");
+
                 $addCartBtn.click(addShoppingCart)
 
                 function addShoppingCart(event){
@@ -60,13 +71,11 @@
                         error : errored
                     })
                 }
-
                 
                 function updateShoppingCart(data, b){
-                    console.log(data, b)
-
-
-
+                    $cartCount.html(data.shoppingCartItems.length)
+                    $success.show()
+                    $success.fadeOut(2300)
                 }
 
                 function errored(){

@@ -13,12 +13,22 @@
         <asset:link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
         <asset:stylesheet src="application.css"/>
         <asset:javascript src="jquery.js"/>
+        <asset:javascript src="jquery.ui.js"/>
 
         <g:layoutHead/>
 
+        <style type="text/css">
+            *{
+                font-size:17px;
+            }
+            #content-container{
+                width:760px;
+                margin:20px auto;
+            }
+        </style>
     </head>
     <body>
-        <div class="container-fluid">
+        <div id="content-container">
             <div class="row">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-light bg-faded">
