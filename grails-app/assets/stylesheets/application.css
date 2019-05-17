@@ -11,6 +11,56 @@
 *= require_self
 */
 
+*{
+    font-size:17px;
+}
+#content-container{
+    width:760px;
+    margin:20px auto 401px auto;
+}
+.clear{
+    clear:both;
+}
+#customer-select{
+    width:400px;
+}
+#bottom-navigation{
+    margin-top:73px;
+}
+
+.store-listing{
+    float:left;
+    padding:50px;
+    margin:20px 20px 20px 0px;
+    border:solid 1px #ddd;
+}
+
+#store-heading{
+    width:340px;
+    display:inline-block;
+}
+
+#shopping-cart-container{
+    padding:20px;
+    border:solid 1px #ddd;
+}
+
+#success-container{
+    height:30px;
+}
+
+.item-listing{
+    float:left;
+    border:solid 1px #ddd;
+    margin:20px 20px;
+    padding:53px;
+}
+
+#shopping-cart-count{
+    font-size:47px;
+}
+
+
 .navbar-brand img {
     display: inline-block;
 }
