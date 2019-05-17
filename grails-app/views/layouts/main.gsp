@@ -1,14 +1,21 @@
 <!doctype html>
 <html class="no-js" lang="">
     <head>
+        
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        
         <title><g:layoutTitle default="Champion Healthcare Technologies"/></title>
+        
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <asset:link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
         <asset:stylesheet src="application.css"/>
+        <asset:javascript src="jquery.js"/>
+
         <g:layoutHead/>
+
     </head>
     <body>
         <div class="container-fluid">

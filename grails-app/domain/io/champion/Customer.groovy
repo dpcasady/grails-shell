@@ -9,7 +9,7 @@ class Customer {
 	State state
 	String zip
 	String phone
-	Date dateOfBirth
+	Date birthday
 
 
 	Date dateCreated
@@ -24,7 +24,7 @@ class Customer {
 		state(nullable:false)
 		zip(nullable:false)
 		phone(nullable:true)
-		dateOfBirth(nullable:true)
+		birthday(nullable:true)
 		id generator: 'sequence', params:[sequence:'ID_CUSTOMER_PK_SEQ']
     }
 

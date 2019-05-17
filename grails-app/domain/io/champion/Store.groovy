@@ -17,7 +17,7 @@ class Store {
 	Date lastUpdated
 
 	
-	static hasMany = [ transactions: Transaction ]
+	static hasMany = [ items: Item, transactions: Transaction ]
 
 
 	static constraints = {

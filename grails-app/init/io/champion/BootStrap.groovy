@@ -42,6 +42,7 @@ class BootStrap {
 
     def createData(){
     	createStores()
+    	createItems()
     	createCustomers()
     }
 
@@ -72,6 +73,39 @@ class BootStrap {
     }
 
 
+    def createItems(){
+
+    	def stores = Store.list()
+    	stores.each { store ->
+    		def min = Math.abs(new Random().nextInt() % [10]) + 0
+    		def max = Math.abs(new Random().nextInt() % [20]) + 11
+
+    		def items = Math.abs(new Random().nextInt() % [max]) + min
+
+    		println "items : ${items}"
+
+    		(0..items).each { m ->
+
+    			def item = new Item()
+    			item.price = Math.abs(new Random().nextInt() % [3]) + 29
+    			item.catalogNumber = Math.abs(new Random().nextInt() % [9901]) + 10001
+    			item.description = "Item " + m
+
+    			item.store = store
+    			item.errors.allErrors.each {
+  	 		        println it
+ 	  		    }
+
+    			item.save(flush:true)
+
+    			store.addToItems(item)
+    			store.save(flush:true)
+
+    		}
+    	}
+    }
+
+
     def createCustomers(){
     	
     	(0..10).each{ n ->
@@ -87,12 +121,13 @@ class BootStrap {
     		customer.zip = zip
 
     		customer.phone = "(602)123-123" + n
-    		customer.dateOfBirth = new Date() + 1
+    		customer.birthday = new Date() + n
     		customer.save(flush:true)
     	}
 
     	println "Customers : ${Customer.count()}"
     }
+
 
 
     def createStates(){
