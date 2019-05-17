@@ -90,13 +90,19 @@ class ShoppingCartController {
 
 
     def checkout(){
-    	println "checkout..."
-        def customer = session.customer
+    	
         def shoppingCart = ShoppingCart.get(params.id)
+        def customer = Customer.get(params.customer.id)
+
+        if(!customer){
+        	flash.message = "Please select a customer...."
+        	redirect(action: "index")
+        	return
+        }
 
         def transaction = new Transaction()
         transaction.shoppingCart = shoppingCart
-        transaction.customer = Customer.get(params.customer.id)
+        transaction.customer = customer
         transaction.store = shoppingCart.store
         transaction.save(flush:true)
 

@@ -38,6 +38,8 @@
                     <div id="bottom-navigation">
                         <g:link uri="/">Dashboard</g:link>&nbsp;|&nbsp;
                         <g:link controller="customer" action="index">Customers</g:link>&nbsp;|&nbsp;
+                        <g:link controller="store" action="index">Stores</g:link>&nbsp;|&nbsp;
+                        <g:link controller="item" action="index">Items</g:link>&nbsp;|&nbsp;
                         <g:link controller="transaction" action="index">Transactions</g:link>
                     </div>
                 </div>
