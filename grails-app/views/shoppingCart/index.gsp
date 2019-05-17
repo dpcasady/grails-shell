@@ -25,9 +25,15 @@
                 text-align:right;
             }
 
+            #total{
+                font-size:31px;
+                font-weight:bold;
+            }
+
             .align-right{
                 text-align:right;
             }
+
         </style>
 
         <a href="#list-store" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -64,14 +70,14 @@
 
                 </g:each>
                 <tr>
-                    <td colspan="3" class="align-right">$${total}</td>
+                    <td colspan="3" class="align-right" id="total">$${total}</td>
                 </tr>
 
             </table>
 
             <div id="checkout-container">
-                <g:form controller="transaction" action="checkout">
-                    <g:actionSubmit value="\$${total} Checkout!" class="btn btn-primary btn-large"/>
+                <g:form controller="transaction" action="checkout" id="${shoppingCart.id}">
+                    <g:actionSubmit value="\$${total} Checkout!" class="btn btn-primary btn-lg"/>
                 </g:form>
             </div>
         </div>
