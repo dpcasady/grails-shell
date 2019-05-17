@@ -42,7 +42,13 @@
 
 #shopping-cart-container{
     padding:20px;
+    text-decoration:none;
     border:solid 1px #ddd;
+    display:inline-block;
+}
+
+#shopping-cart-container:hover{
+    text-decoration:none;
 }
 
 #success-container{

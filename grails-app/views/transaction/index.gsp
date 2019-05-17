@@ -7,22 +7,41 @@
     </head>
     <body>
 
-        <div class="nav" role="navigation">
-            <ul>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        
+
         <div id="list-transaction" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${transactionList}" />
 
-            <div class="pagination">
-                <g:paginate total="${transactionCount ?: 0}" />
-            </div>
+            <g:if test="${transactionList?.size() > 0}">
+
+                <table class="table">
+
+                    <tr>
+                        <g:sortableColumn property="id" title="Id"/>
+                        <g:sortableColumn property="id" title="Items"/>
+                        <g:sortableColumn property="id" title="Date"/>
+                    </tr>
+
+                    <g:each in="${transactionList}" var="transaction">
+                        <tr>
+                            <td><g:link action="show" id="${transaction.id}">${transaction.id}</g:link></td>
+                            <td>${transaction.shoppingCart.shoppingCartItems.size()} Items</td>
+                            <td><g:formatDate date="${transaction.dateCreated}" format="dd MMM yyyy hh:mm" /></td>
+                        </tr>
+                    </g:each>
+
+                    <div class="pagination">
+                        <g:paginate total="${transactionCount ?: 0}" />
+                    </div>
+                </table>
+            </g:if>
+            <g:else>
+                <div class="alert alert-info">No transactions created yet...</div>
+            </g:else>
+
         </div>
     </body>
 </html>

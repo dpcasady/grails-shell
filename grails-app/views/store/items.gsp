@@ -13,14 +13,12 @@
 
             <h1 id="store-heading">${store.name} Store</h1>
 
-            <div id="shopping-cart-container" class="pull-right">
-
-                <g:link uri="/shoppingCart">
-                    <span id="shopping-cart-count">${session?.shoppingCart?.shoppingCartItems?.size()}</span>
-                </g:link> <br/>Cart Items
+            <g:link uri="/shoppingCart" elementId="shopping-cart-container" class="pull-right">
+                <span id="shopping-cart-count">${session?.shoppingCart?.shoppingCartItems?.size()}</span>
+                <br/>Cart Items
 
                 <br class="clear"/>
-            </div>
+            </g:link> 
 
             <p>Shop the lastest and greatest in ${store.type}</p>
 

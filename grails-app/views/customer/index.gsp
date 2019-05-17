@@ -24,7 +24,7 @@
             </g:if>
 
 
-            <g:if test="${customers.size() > 0}">
+            <g:if test="${customers?.size() > 0}">
 
                 <table class="table">
                     <tr>
@@ -39,7 +39,7 @@
                     </tr>
                     <g:each in="${customers}" var="customer">
                         <tr>
-                            <td>${customer.id}</td>
+                            <td><g:link action="edit" id="${customer.id}">${customer.id}</g:link></td>
                             <td>${customer.address}</td>
                             <td>${customer.name}</td>
                             <td>${customer.city}</td>
