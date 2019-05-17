@@ -25,6 +25,9 @@
                 width:760px;
                 margin:20px auto;
             }
+            .clear{
+                clear:both;
+            }
         </style>
     </head>
     <body>
@@ -35,6 +38,12 @@
                         <a class="navbar-brand" href="${createLink(uri:'/')}">
                             <asset:image src="logo.png" height="30" alt="Champion Healthcare Technologies"/>
                         </a>
+
+                        <ul class="pull-right">
+                            <li><g:link uri="/store">Shop Now</g:link></li>
+                        </ul>
+
+                        <br class="clear"/>
                     </nav>
                     <g:layoutBody/>
                 </div>

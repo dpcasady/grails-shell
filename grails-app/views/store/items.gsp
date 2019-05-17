@@ -10,6 +10,12 @@
     <body>
 
         <style type="text/css">
+            #store-heading{
+                width:400px;
+            }
+            #success-container{
+                height:30px;
+            }
             .item-listing{
                 float:left;
                 border:solid 1px #ddd;
@@ -21,6 +27,7 @@
                 font-size:27px;
             }
 
+
         </style>
 
         <a href="#list-store" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -30,13 +37,23 @@
         
         <div id="list-store" class="content scaffold-list" role="main">
 
-            <h1>${store.name} Store</h1>
+            <h1 id="store-heading">${store.name} Store</h1>
 
-            <div id="shopping-cart-container">
-                <g:link uri="/shoppingCart"><span id="shopping-cart-count">0</span></g:link> Items <span id="success-added" style="display:none">Successfully added to Shopping Cart</span>
+            <div id="shopping-cart-container" class="pull-right">
+
+                <g:link uri="/shoppingCart">
+                    <span id="shopping-cart-count">${session.shoppingCart.shoppingCartItems.size()}</span>
+                </g:link> Items 
+
+                <br class="clear:both"/>
+                
+                <br class="clear"/>
             </div>
 
             <p>Shop the lastest and greatest in ${store.type}</p>
+            <div id="success-container">
+                <p id="success-added" style="display:none">Successfully added to Shopping Cart</p>
+            </div>
 
             <g:each in="${store.items}" var="item">
 

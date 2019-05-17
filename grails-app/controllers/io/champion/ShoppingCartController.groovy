@@ -38,15 +38,13 @@ class ShoppingCartController {
 		}else{
 			println "session...."
 			shoppingCart = ShoppingCart.get(session.shoppingCart.id)
+			session.shoppingCart = shoppingCart
 		}
 
-
-
-		println "here.... ${shoppingCart} : ${store}"
 		def shoppingCartItem = ShoppingCartItem.findByItemAndStore(item, store)
 
 		if(!shoppingCartItem){
-			println "no shopping cart item ..."
+
 			shoppingCartItem = new ShoppingCartItem()
 			shoppingCartItem.item = item
 			shoppingCartItem.quantity = 1
@@ -58,7 +56,6 @@ class ShoppingCartController {
 			if (!shoppingCartItem.isAttached()) {
 			    shoppingCartItem.attach()
 			}
-			println "shoppingCartItem : ${shoppingCartItem}"
 
 			shoppingCartItem.errors.allErrors.each { 
 				println it

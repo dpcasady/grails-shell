@@ -8,18 +8,27 @@
     </head>
     
     <body>
-
-
-        <a href="#list-store" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-
+        <style text="text/css">
+            .store-listing{
+                float:left;
+                padding:50px;
+                margin:20px 20px 20px 0px;
+                border:solid 1px #ddd;
+            }
+        </style>
         
         <div id="list-store" class="content scaffold-list" role="main">
+
+            <h1>Shop Stores</h1>
+
+            <p>Shop the latest and greatest in Sports, Electronics and Grocery</p>
 
             <g:each in="${storeList}" var="store">
 
                 <div class="store-listing">
                     <h2>${store.name}</h2>
-                    <p>${store.items.size()}</p>
+                    <p>${store.type}</p>
+                    <p>${store.items.size()} Items</p>
                     <g:link uri="/store/items/${store.id}" class="btn btn-large btn-primary">Shop Now!</g:link>
                 </div>    
 

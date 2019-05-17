@@ -77,6 +77,14 @@
 
             <div id="checkout-container">
                 <g:form controller="transaction" action="checkout" id="${shoppingCart.id}">
+                    <g:select name="customer.id"
+                        from="${io.champion.Customer.list()}"
+                        optionKey="id" 
+                        optionValue="name"
+                        class="form-control"
+                        id="customer-select"
+                        noSelection="${['': 'Select One...']}"/>
+
                     <g:actionSubmit value="\$${total} Checkout!" class="btn btn-primary btn-lg"/>
                 </g:form>
             </div>
