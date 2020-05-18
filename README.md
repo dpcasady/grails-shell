@@ -8,10 +8,12 @@ This is your chance to impress us. This project is a reflection of you so if you
 ## What's provided
 As it stands, this is an empty shell of a Grails application that was created with Grails 3.2.9 via the `grails create-app` command. All plugins and dependencies are already self-contained. On the client side, this project provides the [jQuery](https://jquery.com/) JavaScript library and [Bootstrap](http://getbootstrap.com/3.3.7/) framework.
 
+You can start from this empty project or if you'd prefer you can also create your own from scratch if you'd prefer.
+
 ## Learning Curve
 This project assumes no previous Grails experience and will require research skills and general resourcefulness when working in an unfamiliar environment.
 
-You will have to research and learn the basics of Grails in order to demonstrate the ability to get an application up and running quickly. That being said, the Grails [Getting Started](http://docs.grails.org/3.2.9/guide/gettingStarted.html) guide is excellent and should accelerate your understanding of the framework. In addition, countless of other resources exist online. It's up to you to explore and investigate any questions that may arise during the development process. Note that Grails 2 and Grails 4 have some significant differences so be aware of that as you're researching.
+You will have to research and learn the basics of Grails in order to demonstrate the ability to get an application up and running quickly. That being said, the Grails [Getting Started](http://docs.grails.org/3.2.9/guide/gettingStarted.html) and [Creating Your First Grails App](https://guides.grails.org/grails3/creating-your-first-grails-app/guide/index.html) guides are excellent and should accelerate your understanding of the framework. In addition, countless of other resources exist online. It's up to you to explore and investigate any questions that may arise during the development process. Note that Grails 2 and Grails 4 have some significant differences so be aware of that as you're researching.
 
 Grails was designed for rapid development. You'll find that most features and concepts that are required in a web application are baked into the framework. There's no need to re-invent the wheel on most things, this is a project that is meant to demonstrate rapid development, not sheer programming prowess.
 
